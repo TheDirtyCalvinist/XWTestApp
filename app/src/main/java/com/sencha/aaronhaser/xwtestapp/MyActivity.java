@@ -38,8 +38,8 @@ public class MyActivity extends Activity {
             XWViewManager.sharedInstance().removeAllWebViewsNow();
             xWalkView = XWViewManager.sharedInstance().getWebViewForURL("http://google.com", this);
 //            XWViewManager.sharedInstance().getWebViewForURL("http://www.reddit.com", this);
-            if(extension == null)
-                extension = new EchoExtension();
+//            if(extension == null)
+//                extension = new EchoExtension();
             frame.addView(xWalkView);
             xWalkView.load("http://google.com", "");
             Toast.makeText(this, "Xwalk " + xWalkView.getXWalkVersion(), Toast.LENGTH_LONG).show();
