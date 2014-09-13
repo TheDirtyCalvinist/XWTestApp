@@ -29,6 +29,7 @@ public class XWViewManager {
     
     private XWViewManager() {
         _webViews = new HashMap<String, XWalkView>();
+        XWalkPreferences.setValue(XWalkPreferences.REMOTE_DEBUGGING, true);
         XWalkPreferences.setValue(XWalkPreferences.ANIMATABLE_XWALK_VIEW, true);
     }
 

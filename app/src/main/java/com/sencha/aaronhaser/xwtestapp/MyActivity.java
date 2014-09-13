@@ -1,12 +1,13 @@
 package com.sencha.aaronhaser.xwtestapp;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
+import org.xwalk.core.XWalkExtension;
 import org.xwalk.core.XWalkView;
 
 
@@ -14,12 +15,14 @@ public class MyActivity extends Activity {
 
     private XWalkView xWalkView;
     private FrameLayout frame;
+    private XWalkExtension extension;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
         frame = (FrameLayout) findViewById(R.id.content);
+
 
     }
 
@@ -33,10 +36,13 @@ public class MyActivity extends Activity {
         super.onResume();
         if(xWalkView == null){
             XWViewManager.sharedInstance().removeAllWebViewsNow();
-            xWalkView = XWViewManager.sharedInstance().getWebViewForURL("http://www.google.com", this);
-            XWViewManager.sharedInstance().getWebViewForURL("http://www.reddit.com", this);
+            xWalkView = XWViewManager.sharedInstance().getWebViewForURL("http://google.com", this);
+//            XWViewManager.sharedInstance().getWebViewForURL("http://www.reddit.com", this);
+            if(extension == null)
+                extension = new EchoExtension();
             frame.addView(xWalkView);
-            xWalkView.load("http://www.google.com", "");
+            xWalkView.load("http://google.com", "");
+            Toast.makeText(this, "Xwalk " + xWalkView.getXWalkVersion(), Toast.LENGTH_LONG).show();
         } else {
             frame.addView(xWalkView);
             xWalkView.onShow();
@@ -63,8 +69,9 @@ public class MyActivity extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
-            Intent i = new Intent(this, MyActivity.class);
-            startActivity(i);
+//            Intent i = new Intent(this, MyActivity.class);
+//            startActivity(i);
+            xWalkView.reload(XWalkView.RELOAD_IGNORE_CACHE);
             return true;
         }
         return super.onOptionsItemSelected(item);
