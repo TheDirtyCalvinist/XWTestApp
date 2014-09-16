@@ -12,13 +12,13 @@ buildscript {
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 19
+    compileSdkVersion 20
     buildToolsVersion "20.0.0"
 
     defaultConfig {
         applicationId "com.sencha.aaronhaser.xwtestapp"
         minSdkVersion 15
-        targetSdkVersion 19
+        targetSdkVersion 20
         versionCode 1
         versionName "1.0"
     }
